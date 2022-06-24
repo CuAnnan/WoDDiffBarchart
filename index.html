@@ -41,8 +41,8 @@
             {
                 return new Promise((resolve, reject)=>{
                     let settings = {
-                        size:$pool.val(),
-                        diff:$diff.val(),
+                        size:parseInt($pool.val()),
+                        diff:parseInt($diff.val()),
                         spec:$spec.is(":checked"),
                         willpower:$willpower.is(":checked")
                     };
@@ -50,14 +50,15 @@
                     let dicePool = new DicePool(settings);
                     let results = {};
                     let test = 0;
-                    let testsToRun = $numberOfSimpleTests.val();
-
+                    let testsToRun = parseInt($numberOfSimpleTests.val());
 
                     if(!(Number.isInteger(settings.size) && Number.isInteger(settings.diff) && Number.isInteger(testsToRun)))
                     {
                         reject("Invalid fields");
                         return;
                     }
+
+
                     runTest();
 
                     function runTest()
