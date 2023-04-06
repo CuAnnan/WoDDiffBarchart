@@ -17,27 +17,30 @@ class DicePool
         {
             let dieRolled = 1 + Math.floor(Math.random() * 10);
             diceRolled.push(dieRolled);
-            if(dieRolled == 1)
+            if(dieRolled === 1)
             {
                 onesRolled += 1;
             }
             else if(dieRolled >= this.diff)
             {
                 successesRolled ++;
-                if(dieRolled == 10 && this.spec)
+                if(dieRolled === 10 && this.spec)
                 {
                     successesRolled ++;
                 }
             }
         }
 
-        let botch = successesRolled == 0 && onesRolled >=1 && !this.willpower;
+        let botch = successesRolled === 0 && onesRolled >=1 && !this.willpower;
         let successes = successesRolled - onesRolled + (this.willpower?1:0);
 
         return {
             diceRolled:diceRolled,
             successes:successes,
+            diff:this.diff,
             botch:botch
         }
     }
 }
+
+module.exports = DicePool;
